@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/','/home');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::controller(EmployeeController::class)->group(function(){
+    Route::prefix('funcionarios')->group(function () {
+        Route::get('/', 'index')->name('employees.index');
+        Route::get('/cadastrar', 'create')->name('employees.create');
+        Route::post('/cadastrar', 'store')->name('employees.store');
+    });
+});
+
+
+
+Auth::routes(['register'=> false, 'reset' => false]);

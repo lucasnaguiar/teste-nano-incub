@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('username');
             $table->string('password');
-            $table->decimal('amount',10,2);
+            $table->decimal('amount',10,2)->default(0);
             $table->foreignId('admin_id')->constrained('admins');
             $table->timestamps();
         });

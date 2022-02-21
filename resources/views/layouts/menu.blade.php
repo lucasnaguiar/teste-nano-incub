@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <nav class="navbar navbar-expand-lg navbar-dark rounded-1" style="background-color: #515A5A;">
+    <nav class="navbar navbar-expand-lg navbar-dark rounded-1" style="background-color: #34495E;">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,8 +14,8 @@
                             Funcionários
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                            <li><a class="dropdown-item" href="#">Listar</a></li>
+                            <li><a class="dropdown-item" href="{{route('employees.create')}}">Cadastrar</a></li>
+                            <li><a class="dropdown-item" href="{{route('employees.index')}}">Visualizar Funcionário</a></li>
                         </ul>
                     </li>
                 </ul>
