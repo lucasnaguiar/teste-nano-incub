@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-
-    protected $fillable = ['full_name', 'username', 'password', 'amount', 'admin_id'];
     use HasFactory;
+    protected $fillable = ['full_name', 'username', 'password', 'amount', 'admin_id'];
+
+    public function transactions()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
 }

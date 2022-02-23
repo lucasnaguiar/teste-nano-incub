@@ -10,4 +10,15 @@ class Transaction extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }
