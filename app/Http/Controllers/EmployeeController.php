@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\EmployeeRepository;
+use Carbon\Carbon;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Models\Employee;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -13,7 +12,21 @@ class EmployeeController extends Controller
 {
     public function index()
     {
+        
+        $employees = Employee::select();
 
+        if (request('name')) {
+            $employees = $employees->where('full_name', 'like', '%'.request()->name.'%');
+        }
+
+        if (request('creation')) {
+            $date = Carbon::parse(request('creation'));
+            $employees = $employees->whereDate('created_at', $date);
+        }
+
+        $employees = $employees->get();
+
+        return view('employees.index', compact('employees'));
     }
 
     public function create()
