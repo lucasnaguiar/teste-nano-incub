@@ -34,7 +34,7 @@
                     @foreach($employees as $employee)
                         <tr>
                             <th scope="row">{{$employee->id}}</th>
-                            <td>{{$employee->full_name}}</td>
+                            <td><a class="employees-list-item" href="{{route('employees.show', $employee)}}">{{$employee->full_name}}</a></td>
                             <td>{{$employee->username}}</td>
                         </tr>
                     @endforeach

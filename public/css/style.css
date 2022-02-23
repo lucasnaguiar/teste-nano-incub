@@ -1,0 +1,9 @@
+.employees-list-item {
+    text-decoration: none;
+    color: #34495E;
+}
+
+.employees-list-item:hover {
+    color: #34495E;
+    text-decoration: underline;
+}

@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        
+
         $employees = Employee::select();
 
         if (request('name')) {
@@ -44,5 +44,10 @@ class EmployeeController extends Controller
         ]);
 
         return redirect()->route('employees.index');
+    }
+
+    public function show(Employee $employee)
+    {
+        return view('employees.show', compact('employee'));
     }
 }

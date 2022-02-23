@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', 'index')->name('employees.index');
             Route::get('/cadastrar', 'create')->name('employees.create');
             Route::post('/cadastrar', 'store')->name('employees.store');
+            Route::get('/{employee}/visualizar', 'show')->name('employees.show');
         });
     });
 });
