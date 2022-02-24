@@ -21,4 +21,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+
+    public function transactionType()
+    {
+        return $this->belongsTo(TransactionType::class);
+    }
 }
