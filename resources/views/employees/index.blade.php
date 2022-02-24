@@ -4,9 +4,9 @@
 
     <div class="card">
         <div class="card-header">
-            
+
             Funcionários
-            
+
             <form class="row g-3 mt-1" method="get" action="{{route('employees.index')}}" autocomplete="off">
                 <div class="col-md-6">
                     <label for="inputSearch" class="visually-hidden"></label>
@@ -40,6 +40,11 @@
                     @endforeach
                 </tbody>
                 </table>
+                <div class="row">
+                    <div class="col">
+                        <a href="{{route('employees.create')}}" class="btn btn-success">Cadastrar Novo</a>
+                    </div>
+                </div>
         </div>
     </div>
 
