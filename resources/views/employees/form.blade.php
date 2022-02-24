@@ -1,7 +1,7 @@
-<div class="row g-3">
+<div class="row g-3 mb-3">
     <div class="col-md-6">
         <label for="employeeName" class="form-label">Nome Completo</label>
-        <input type="text" class="form-control @error('name') is-invalid @enderror" id="employeeName" name="name" value="{{isset($employee) ? $employee->name : old('name')}}">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" id="employeeName" name="name" value="{{isset($employee) ? $employee->full_name : old('name')}}">
         @error('name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -21,23 +21,26 @@
         </div>
     </div>
 </div>
-<div class="row g-3 mt-2 mb-3">
-    <div class="col-md-5">
-        <label for="employeePass" class="form-label">Senha</label>
-        <input type="password" class="form-control @error('password') is-invalid @enderror" id="employeePass" name="password" value="{{isset($employee) ? $employee->password : old('password')}}">
-        @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
-    <div class="col-md-5">
-        <label for="employeePassConfirm" class="form-label">Confirme a senha</label>
-        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="employeePassConfirm" name="password_confirmation">
-        @error('password_confirmation')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
-</div>
+
+@if(Route::currentRouteName() == 'employees.create')
+        <div class="row g-3 mt-2 mb-3">
+            <div class="col-md-5">
+                <label for="employeePass" class="form-label">Senha</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="employeePass" name="password" value="{{isset($employee) ? $employee->password : old('password')}}">
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+                @enderror
+            </div>
+            <div class="col-md-5">
+                <label for="employeePassConfirm" class="form-label">Confirme a senha</label>
+                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="employeePassConfirm" name="password_confirmation">
+                @error('password_confirmation')
+                <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+                @enderror
+            </div>
+        </div>
+@endisset

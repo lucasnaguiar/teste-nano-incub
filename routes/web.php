@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/cadastrar', 'create')->name('employees.create');
             Route::post('/cadastrar', 'store')->name('employees.store');
             Route::get('/{employee}/visualizar', 'show')->name('employees.show');
+            Route::get('/{employee}/editar', 'edit')->name('employees.edit');
+            Route::patch('/{employee}', 'update')->name('employees.update');
         });
     });
 });

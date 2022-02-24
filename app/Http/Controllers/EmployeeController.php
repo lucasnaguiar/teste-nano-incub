@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Http\Requests\StoreEmployeeRequest;
 use App\Models\Employee;
+use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Requests\StoreEmployeeRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -49,5 +50,20 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         return view('employees.show', compact('employee'));
+    }
+
+    public function edit(Employee $employee)
+    {
+        return view('employees.edit', compact('employee'));
+    }
+
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    {
+        $employee->update([
+            'full_name' => $request->name,
+            'username' => $request->username,
+        ]);
+
+        return redirect()->route('employees.show', compact('employee'));
     }
 }

@@ -42,7 +42,7 @@
                 <div class="row justify-content-between">
                     <div class="col-auto me-auto" >
                         <a class="btn btn-secondary" href="{{route('employees.index')}}">Voltar</a>
-                        <a class="btn btn-success" href="#">Editar</a>
+                        <a class="btn btn-success" href="{{route('employees.edit', $employee)}}">Editar</a>
                     </div>
                     <div class="col-auto">
                         <a class="btn btn-danger" href="#" onclick="confirm('Deseja excluir esse Funcionário do Banco de Dados?')">Excluir Funcionácio</a>
