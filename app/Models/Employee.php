@@ -4,15 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use  Dyrynda\Database\Support\CascadeSoftDeletes;
+
+
 
 class Employee extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+
     protected $fillable = ['full_name', 'username', 'password', 'amount', 'admin_id'];
+
+    protected $cascadeDeletes = ['transactions'];
+
 
     public function transactions()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 
     public function creator()

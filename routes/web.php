@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/{employee}/visualizar', 'show')->name('employees.show');
             Route::get('/{employee}/editar', 'edit')->name('employees.edit');
             Route::patch('/{employee}', 'update')->name('employees.update');
+            Route::delete('/{employee}', 'destroy')->name('employees.destroy');
         });
     });
 });

@@ -66,4 +66,10 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.show', compact('employee'));
     }
+
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+        return redirect()->route('employees.index');
+    }
 }

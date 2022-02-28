@@ -45,7 +45,11 @@
                         <a class="btn btn-success" href="{{route('employees.edit', $employee)}}">Editar</a>
                     </div>
                     <div class="col-auto">
-                        <a class="btn btn-danger" href="#" onclick="confirm('Deseja excluir esse Funcionário do Banco de Dados?')">Excluir Funcionácio</a>
+                        <form action="{{ route('employees.destroy', $employee) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" onclick="return confirm('Deseja excluir esse Funcionário do Banco de Dados?')">Deletar</button>
+                        </form>
                     </div>
                 </div>
             </div>
