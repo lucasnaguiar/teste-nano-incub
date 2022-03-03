@@ -7,3 +7,14 @@
     color: #34495E;
     text-decoration: underline;
 }
+
+.employee-list-search {
+    font-size: 1em;
+}
+
+.employee-list-search:hover {
+    font-weight: bold;
+    background-color: rgb(52, 73, 94, 0.2);
+    cursor: pointer;
+}
+

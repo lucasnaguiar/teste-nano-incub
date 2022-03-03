@@ -72,4 +72,11 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect()->route('employees.index');
     }
+
+    public function employeeSearchList()
+    {
+        $emps = Employee::EmployeeSearch(request()->search)->get(['id', 'full_name', 'username', 'amount']);
+
+        return response($emps, '200');
+    }
 }

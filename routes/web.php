@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,21 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/{employee}/editar', 'edit')->name('employees.edit');
             Route::patch('/{employee}', 'update')->name('employees.update');
             Route::delete('/{employee}', 'destroy')->name('employees.destroy');
+        });
+
+        Route::get('/employees', 'employeeSearchList');
+    });
+
+
+    Route::controller(TransactionController::class)->group(function() {
+        Route::prefix('movimentacoes')->group(function () {
+            Route::get('/', 'index')->name('transactions.index');
+            Route::get('/cadastrar', 'create')->name('transactions.create');
+//            Route::post('/cadastrar', 'store')->name('employees.store');
+//            Route::get('/{employee}/visualizar', 'show')->name('employees.show');
+//            Route::get('/{employee}/editar', 'edit')->name('employees.edit');
+//            Route::patch('/{employee}', 'update')->name('employees.update');
+//            Route::delete('/{employee}', 'destroy')->name('employees.destroy');
         });
     });
 });

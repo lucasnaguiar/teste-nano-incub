@@ -27,4 +27,10 @@ class Employee extends Model
     {
         return $this->belongsTo(Admin::class, 'admin_id');
     }
+
+    public function scopeEmployeeSearch($query, $search)
+    {
+        return $query->where('full_name', 'like', '%' . $search . '%')
+            ->orWhere('username', 'like', '%' . $search . '%');
+    }
 }
