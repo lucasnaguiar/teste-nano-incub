@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('layouts.status')
     <div class="card">
         <div class="card-header">Cadastrar Movimentação</div>
 
@@ -27,7 +27,7 @@
                         <label for="transactionAmount" class="form-label">Valor</label>
                         <div class="input-group">
                             <span class="input-group-text" id="transactionAmount">$</span>
-                            <input type="number" class="form-control @error('transaction_amount') is-invalid @enderror" id="transactionAmount" name="transaction_amount">
+                            <input type="number" class="form-control @error('transaction_amount') is-invalid @enderror" min="0.1" step="0.1" id="transactionAmount" name="transaction_amount">
                             @error('transaction_amount')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                 <div class="row g-3 mt-2 mb-3">
                     <div class="form-group col-md-6">
                         <label for="transactionDescription">Descrição</label>
-                        <textarea class="form-control @error('transaction_description') is-invalid @enderror"  id="transactionDescription" name="transaction_description">{{old('user_about')}}</textarea>
+                        <textarea class="form-control @error('transaction_description') is-invalid @enderror"  id="transactionDescription" name="transaction_description"></textarea>
                         @error('transaction_description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

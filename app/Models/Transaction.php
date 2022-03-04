@@ -11,6 +11,8 @@ class Transaction extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['transaction_type_id', 'amount', 'obs', 'employee_id', 'admin_id', 'created_at'];
+
 
     public function employee()
     {

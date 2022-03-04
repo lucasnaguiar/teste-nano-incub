@@ -75,7 +75,7 @@ class EmployeeController extends Controller
 
     public function employeeSearchList()
     {
-        $emps = Employee::EmployeeSearch(request()->search)->get(['id', 'full_name', 'username', 'amount']);
+        $emps = Employee::EmployeeSearch(request()->search)->get(['id', 'full_name', 'username', 'balance']);
 
         return response($emps, '200');
     }

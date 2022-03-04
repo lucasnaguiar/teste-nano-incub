@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('movimentacoes')->group(function () {
             Route::get('/', 'index')->name('transactions.index');
             Route::get('/cadastrar', 'create')->name('transactions.create');
-//            Route::post('/cadastrar', 'store')->name('employees.store');
+           Route::post('/cadastrar', 'store')->name('transactions.store');
 //            Route::get('/{employee}/visualizar', 'show')->name('employees.show');
 //            Route::get('/{employee}/editar', 'edit')->name('employees.edit');
 //            Route::patch('/{employee}', 'update')->name('employees.update');
