@@ -13,7 +13,7 @@ class Employee extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
 
-    protected $fillable = ['full_name', 'username', 'password', 'amount', 'admin_id'];
+    protected $fillable = ['full_name', 'username', 'password', 'balance', 'admin_id'];
 
     protected $cascadeDeletes = ['transactions'];
 

@@ -35,7 +35,7 @@
                         <h6 class="mb-0">Saldo</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{$employee->amount}}
+                        {{$employee->balance}}
                     </div>
                 </div>
                 <hr>

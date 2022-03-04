@@ -24,7 +24,7 @@ class EmployeeFactory extends Factory
             'full_name' => $fistName . ' ' . $lastName,
             'username' => $this->faker->userName,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'amount' => $this->faker->numberBetween($min = 100, $max = 10000),
+            'balance' => $this->faker->numberBetween($min = 100, $max = 10000),
             'admin_id' => 1,
         ];
     }

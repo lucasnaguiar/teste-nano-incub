@@ -6,7 +6,7 @@
         <div class="card-header">Cadastrar Movimentação</div>
 
         <div class="card-body">
-            <form method="post" action="#" autocomplete="off">
+            <form method="post" action="{{route('transactions.store')}}" autocomplete="off">
                 @csrf
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
@@ -48,9 +48,9 @@
 
                         @enderror
 
-                        <template x-if="selectedEmployee.amount">
+                        <template x-if="selectedEmployee.balance">
                             <span class="mt-2" role="alert">
-                                <strong x-text="'Saldo Atual: '+ selectedEmployee.amount"></strong>
+                                <strong x-text="'Saldo Atual: '+ selectedEmployee.balance"></strong>
                             </span>
                         </template>
 
