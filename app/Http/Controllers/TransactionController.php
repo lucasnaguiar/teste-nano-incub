@@ -10,12 +10,37 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        //
+
+        $transactions = Transaction::select();
+
+        if (request()->has('name')) {
+            $transactions = Transaction::whereHas('employee', function (Builder $query) {
+                $query->where('full_name', 'like', '%'. request()->name .'%');
+            });
+        }
+
+        if (request()->type == 1) {
+            $transactions = $transactions->where('transaction_type_id', 1);
+        }
+
+        if (request()->type == 2) {
+            $transactions = $transactions->where('transaction_type_id', 2);
+        }
+
+        if (request('creation')) {
+            $date = Carbon::parse(request('creation'));
+            $transactions = $transactions->whereDate('created_at', $date);
+        }
+
+        $transactions = $transactions->latest()->get();
+
+        return view('transactions.index', compact('transactions'));
     }
 
     public function create()
