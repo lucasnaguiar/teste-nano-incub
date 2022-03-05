@@ -38,7 +38,7 @@ class TransactionController extends Controller
             $transactions = $transactions->whereDate('created_at', $date);
         }
 
-        $transactions = $transactions->latest()->get();
+        $transactions = $transactions->latest()->paginate(10);
 
         return view('transactions.index', compact('transactions'));
     }
@@ -59,20 +59,19 @@ class TransactionController extends Controller
 
         DB::beginTransaction();
 
-        $transaction = Transaction::create([
+        $transaction = $employee->transactions()->create([
             'transaction_type_id' => $request->transaction_type,
             'amount' => $request->transaction_amount,
             'obs' => $request->transaction_description,
-            'employee_id' => $employee->id,
             'admin_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
 
-        $madeEffective = $employee->update([
+        $success = $employee->update([
             'balance' => $request->transaction_type == '1' ? $employee->balance + $request->transaction_amount : $employee->balance - $request->transaction_amount
         ]); 
 
-        if ($transaction && $madeEffective) {
+        if ($transaction && $success) {
             DB::commit();
             session()->flash('status', 'Transação efetivada com sucesso.');
             return redirect()->route('transactions.index');
