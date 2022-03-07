@@ -50,13 +50,14 @@
                             <th scope="row">{{$transaction->id}}</th>
                             <td>{{$transaction->amount}}</td>
                             <td>{{$transaction->obs}}</td>
-                            <td>{{$transaction->employee->full_name}}</td>
+                            <td><a class="employees-list-item" href="{{route('employees.show', $transaction->employee_id)}}">{{$transaction->employee->full_name}}</a></td>
                             <td>{{$transaction->transactionType->name}}</td>
                             <td> {{ date('d-m-Y', strtotime($transaction->created_at)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
                 </table>
+                {{$transactions->links()}}
                 <div class="row">
                     <div class="col">
                         <a href="{{route('transactions.create')}}" class="btn btn-success">Fazer Transação</a>

@@ -27,7 +27,8 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome Completo</th>
-                        <th scope="col">Login</th>
+                        <th scope="col">Saldo</th>
+                        <th scope="col">Data de Criação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +36,13 @@
                         <tr>
                             <th scope="row">{{$employee->id}}</th>
                             <td><a class="employees-list-item" href="{{route('employees.show', $employee)}}">{{$employee->full_name}}</a></td>
-                            <td>{{$employee->username}}</td>
+                            <td>{{$employee->balance}}</td>
+                            <td>{{date('d-m-Y', strtotime($employee->created_at))}}</td>
                         </tr>
                     @endforeach
                 </tbody>
                 </table>
+                {{$employees->links()}}
                 <div class="row">
                     <div class="col">
                         <a href="{{route('employees.create')}}" class="btn btn-success">Cadastrar Novo</a>
