@@ -25,7 +25,7 @@ class EmployeeController extends Controller
             $employees = $employees->whereDate('created_at', $date);
         }
 
-        $employees = $employees->get();
+        $employees = $employees->orderBy('full_name', 'asc')->paginate(10);
 
         return view('employees.index', compact('employees'));
     }
@@ -49,11 +49,14 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        return view('employees.show', compact('employee'));
+        $empTransactions = $employee->transactions()->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('employees.show', compact('employee', 'empTransactions'));
     }
 
     public function edit(Employee $employee)
     {
+
         return view('employees.edit', compact('employee'));
     }
 
