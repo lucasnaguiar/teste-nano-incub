@@ -1,4 +1,4 @@
-# Sistema de derenciamento de bônus de funcionários
+# Sistema de gerenciamento de bonificação de funcionários
 
 ## Sobre o projeto
 
@@ -12,6 +12,15 @@ Laravel Sail (Docker/Docker Compose) com
 - Bootstrap 5.1
 - MySQL
 - PHP 8.1
+
+
+### Observações:
+
+Considerei utilizar repository pattern para melhor implementação da camada de banco de dados, mas não quis extender mais o tempo de envio do teste já bastante alongado por questões pessoais, optei por simplesmente ganhar tempo usando o máximo de recursos do Eloquent que achei serem úteis para essa solução, ainda que na camada Controller.
+
+No cadastro de movimentações, o preenchimento do funcionário é feito dinamicamente através de uma busca digitando o nome ou login do funcionário. Gostaria de fazer usando Vue.js mas optei por usar Alpine.js que permite fazer isso ao lado do Laravel Blade, requisitado para esse teste. 
+
+A funcionalidade de deletar um funcionário está disponível ao visualizar os dados do funcionário. Para esta funcionalidade usei soft delete, o que hipoteticamente pemitiria que os dados do funcionário fossem restaurados, no entanto, as movimentações de bonus relacionadas a ele são de fato deletadas. 
 
 ## Executando o projeto
 
@@ -62,8 +71,4 @@ Login: nanoincub
 Senha: teste@123
 ```
 
-### Observações:
 
-Considerei utilizar repository pattern para melhor implementação da camada de banco de dados, mas não quis extender mais o tempo de envio do teste já bastante alongado por questões pessoais, optei por simplesmente ganhar tempo usando o máximo de recursos do Eloquent que achei serem úteis para essa solução, ainda que na camada Controller. 
-
-No cadastro de movimentações, o preenchimento do funcionário é feito dinamicamente através de uma busca digitando o nome ou login do funcionário. Gostaria de fazer usando Vue.js mas optei por usar Alpine.js que permite fazer isso ao lado do Laravel Blade, requisitado para esse teste. 
