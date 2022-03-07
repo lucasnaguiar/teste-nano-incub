@@ -64,22 +64,20 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Data</th>
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Descrição</th>
-
-
+                                <th scope="col">Data</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($empTransactions as $transaction)
                                 <tr class="@if($transaction->transaction_type_id == 1) table-success @else table-danger @endif">
                                     <th scope="row">{{$transaction->id}}</th>
-                                    <td> {{ date('d-m-Y', strtotime($transaction->created_at)) }}</td>
                                     <td>{{$transaction->transactionType->name}}</td>
                                     <td>{{$transaction->amount}}</td>
                                     <td>{{$transaction->obs}}</td>
+                                    <td> {{ date('d-m-Y', strtotime($transaction->created_at)) }}</td>
                                 </tr>
                             @empty 
                             <tr>
