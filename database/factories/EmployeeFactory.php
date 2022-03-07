@@ -22,9 +22,9 @@ class EmployeeFactory extends Factory
 
         return [
             'full_name' => $fistName . ' ' . $lastName,
-            'username' => $this->faker->userName,
+            'username' => $this->faker->userName(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'balance' => $this->faker->numberBetween($min = 100, $max = 10000),
+            'balance' => $this->faker->numberBetween($min = 100, $max = 1200),
             'admin_id' => 1,
         ];
     }

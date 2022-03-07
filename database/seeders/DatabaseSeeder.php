@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
+use App\Models\Transaction;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AdminSeeder::class);
-        \App\Models\Employee::factory(25)->create();
         $this->call(TransactionTypeSeeder::class);
+
+        for ($i = 1; $i<=12; $i++) {
+            Employee::factory()->has(Transaction::factory()->count(15))->create();
+        }
 
     }
 }
