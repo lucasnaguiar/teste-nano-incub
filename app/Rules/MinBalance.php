@@ -40,6 +40,6 @@ class MinBalance implements Rule
      */
     public function message()
     {
-        return 'Funcionário não possui saldo suficiente. Saldo Atual: ' . $this->employee->balance ;
+        return  $this->employee->full_name . ' não possui saldo suficiente. Saldo Atual: ' . $this->employee->balance ;
     }
 }
