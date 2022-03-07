@@ -1,64 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Sistema de derenciamento de bônus de funcionários
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sobre o projeto
 
-## About Laravel
+Este projeto foi criado com base nas especificações fornecidas para o processo seletivo da empresa Nano Incub. Onde o mesmo mostra por meio de um sistema de gestão de bônus de usuário como utilizar recursos do Laravel para desenvolver essa solução.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O projeto foi criado utilizando as seguintes tecnologias:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Laravel Sail (Docker/Docker Compose) com
+- Laravel v9.x
+- Laravel Blade e Alpine.js
+- Bootstrap 5.1
+- MySQL
+- PHP 8.1
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Executando o projeto
 
-## Learning Laravel
+Para começar é preciso instalar as dependências do projeto, após esse passo poderemos gerenciar todo o projeto usando Docker através do Laravel Sail. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+composer install
+```
+Caso não tenha o composer instalado na máquina, pode ser executado atráves do docker com o comando:
+```
+docker run --rm -v $(pwd):/app -w /app composer install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Agora crie um arquivo .env na pasta do projeto e parametrize com os dados do banco:
 
-## Laravel Sponsors
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Quando 'subir' os containers usando o Laravel Sail, ele vai usar esses dados para configurar o container do database, por isso deve ser feito antes do comando a seguir. Podemos subir agora com o comando (sempre dentro da pasta do projeto): 
 
-### Premium Partners
+```
+./vendor/bin/sail up
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Em alguns segundos o projeto já estará rodando localmente em 
+http://127.0.0.1:80. Agora, outro terminal, você deve gerar a chave de criptografia do projeto e executar as migrations e seeders, sempre usando o Laravel Sail.
 
-## Contributing
+```
+./vendor/bin/sail artisan key:generate
+```
+```
+./vendor/bin/sail artisan migrate --seed
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+O banco será populado com dados fakes de funcionários e movimentações de bônus para melhor testar as funcionalidades de busca e paginação. 
 
-## Code of Conduct
+### Acesso
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Um usuário admin será criado, permitindo login com os dados:
+```
+Login: nanoincub
+Senha: teste@123
+```
 
-## Security Vulnerabilities
+### Observações:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Considerei utilizar repository pattern para melhor implementação da camada de banco de dados, mas não quis extender mais o tempo de envio do teste já bastante alongado por questões pessoais, optei por simplesmente ganhar tempo usando o máximo de recursos do Eloquent que achei serem úteis para essa solução, ainda que na camada Controller. 
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+No cadastro de movimentações, o preenchimento do funcionário é feito dinamicamente através de uma busca digitando o nome ou login do funcionário. Gostaria de fazer usando Vue.js mas optei por usar Alpine.js que permite fazer isso ao lado do Laravel Blade, requisitado para esse teste. 
